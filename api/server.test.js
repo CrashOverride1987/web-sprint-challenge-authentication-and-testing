@@ -1,4 +1,6 @@
-// Write your tests here
-test('sanity', () => {
-  expect(true).toBe(false)
+const server = require('./server')
+describe('sanity', () => {
+  test('if server exists', () => {
+    expect(server).toBeDefined()
+  })
 })

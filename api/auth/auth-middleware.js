@@ -1,5 +1,5 @@
 const { JWT_SECRET } = require("../secrets"); // use this secret!
-const Jokes = require('../jokes/jokes-model')
+const Auth = require('./auth-model')
 const jwt = require('jsonwebtoken')
 
 const restricted = async (req, res, next) => {

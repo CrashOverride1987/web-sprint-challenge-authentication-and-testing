@@ -29,7 +29,7 @@ const only = role_name => (req, res, next) => {
 }
 async function checkUsernameFree(req, res, next) {
     try { 
-      const users = await Jokes.findBy({ username: req.body.username})
+      const users = await Auth.findBy({ username: req.body.username})
       if (!users.length) {
         next()
       }
@@ -43,8 +43,8 @@ async function checkUsernameFree(req, res, next) {
 
 const checkUsernameAndPassword = async (req, res, next) => {
   try {
-    const [user] = await Jokes.findBy({username: req.body.username})
-    const [password] = await Jokes.findBy({password: req.body.password})
+    const [user] = await Auth.findBy({username: req.body.username})
+    const [password] = await Auth.findBy({password: req.body.password})
     if (!user || !password) {
       next({ status: 422, message: 'username and password required'})
     } else if (password !== req.user.password) {

@@ -47,6 +47,8 @@ const checkUsernameAndPassword = async (req, res, next) => {
     const [password] = await Jokes.findBy({password: req.body.password})
     if (!user || !password) {
       next({ status: 422, message: 'username and password required'})
+    } else if (password !== req.user.password) {
+        next({message: 'invalid credentials'})
     } else {
       req.user = user
       next()
